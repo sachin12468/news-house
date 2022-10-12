@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Menubar from './components/Menubar';
+import Navbar from './components/Navbar';
+import News from './components/News';
+import NewsState from './context/news/NewsState';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NewsState>
+      <Router >
+        <Navbar />
+        <div className='d-flex flex-wrap justify-content-center'>
+          <Menubar />
+          <Routes>
+            <Route exact path='/' element={<News />} />
+          </Routes>
+        </div>
+      </Router>
+    </NewsState>
   );
 }
 
